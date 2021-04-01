@@ -1,0 +1,41 @@
+nb-card-body {
+  padding: .25rem;
+}
+
+nb-card-header.filters {
+  position: sticky;
+  display: flex;
+  top: 0;
+  z-index: 999;
+  background:  white;
+
+  input {
+    margin: auto 0;
+  }
+
+  button {
+    &.search {
+      margin: auto 0 auto .75rem;
+    }
+
+    &.toggle-deleted {
+      margin: auto auto auto .75rem;
+    }
+
+    &.create {
+      margin: auto 0 auto 0;
+    }
+  }
+
+  .free-search {
+    flex: 1;
+    max-width: 300px;
+  }
+
+  app-pager {
+    margin: auto 0 auto auto;
+  }
+  i {
+    color: black !important;
+  }
+}

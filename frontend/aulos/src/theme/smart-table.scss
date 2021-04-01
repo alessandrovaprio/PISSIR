@@ -1,0 +1,255 @@
+
+@import "../themes";
+
+table {
+  position: relative;
+
+  tbody {
+    &.preview {
+      overflow: hidden;
+      position: relative;
+
+      &:after {
+        content: '';
+        z-index: 1;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to bottom, rgba(white, 0), rgba(white, 1));
+      }
+    }
+  }
+
+  thead {
+    tr {
+      position: relative;
+      border: none;
+
+      th {
+        background: nb-theme(color-basic-700);
+        font-weight: bold !important;
+        color: white !important;
+        padding: .65rem .85rem !important;
+        border: none;
+        // border-right: 1px solid #343744;
+        vertical-align: middle !important;
+
+        &:last-child {
+          border-right: none;
+        }
+
+        a, a:active, a:visited, a:hover {
+          font-weight: bold !important;
+          color: white !important;
+        }
+      }
+
+      &.ng2-smart-filters {
+        display: none !important;
+      }
+    }
+  }
+
+
+
+  tr {
+    td {
+      padding: .65rem .85rem !important;
+      font-size: 14px !important;
+      vertical-align: middle !important;
+
+      &.ng2-smart-actions {
+        position: relative;
+        height: auto !important;
+        min-width: 175px;
+        width: 175px;
+        max-width: 175px;
+      }
+    }
+  }
+
+  &.table-balance {
+    > tbody {
+      > tr {
+        transition: all .15s ease-out;
+        cursor: pointer;
+
+        td {
+          font-size: 14px !important;
+          .chip {
+            font-size: 14px !important;
+          }
+        }
+
+        &.non-clickable {
+          cursor: default !important;
+        }
+
+        > td {
+          transition: all .15s ease-out;
+        }
+
+        &.expandable {
+          transition: all .6s ease-out;
+          display: none;
+          width: 100%;
+
+          &.expanded {
+            display: table-row;
+          }
+
+          table {
+            th {
+              background: nb-theme(color-info-700);
+            }
+          }
+        }
+
+        &:hover {
+          background: white;
+
+          > td {
+            color: nb-theme(color-primary-500);
+          }
+        }
+
+        &.selected {
+          background: nb-theme(color-info-700);;
+
+          > td {
+            color: white
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.index-table {
+  table {
+    position: relative;
+
+    thead {
+      tr {
+        // $left-color: nb-theme(button-hero-primary-left-background-color);
+        // $right-color: nb-theme(button-hero-primary-right-background-color);
+        // background-image: linear-gradient(to right, $left-color, $right-color);
+        position: relative;
+
+        th {
+          padding: .45rem .65rem !important;
+
+          a, a:active, a:visited, a:hover {
+            font-weight: bold !important;
+            color: white !important;
+          }
+        }
+
+        &.ng2-smart-filters {
+          display: none !important;
+        }
+      }
+    }
+
+    tr {
+      td {
+        padding: .65rem .85rem !important;
+        font-size: 14px !important;
+
+        &.ng2-smart-actions {
+          position: relative;
+          height: auto !important;
+          min-width: 175px;
+          width: 175px;
+          max-width: 175px;
+        }
+      }
+    }
+  }
+
+  &.sticky-header {
+    // table {
+    //   position: relative;
+
+    //   thead {
+    //     tr {
+    //       position: relative;
+
+    //       th {
+    //         position: sticky;
+    //         top: 0px;
+    //         z-index: 999;
+    //       }
+
+    //       &.ng2-smart-filters {
+    //         display: none !important;
+    //       }
+    //     }
+    //   }
+    // }
+  }
+
+  &.single-action {
+    table {
+      tr {
+        td.ng2-smart-actions {
+          min-width: 100px;
+        }
+      }
+    }
+  }
+}
+
+
+
+ng2-st-tbody-custom {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.ng2-smart-action-delete-delete,
+.ng2-smart-action-edit-edit,
+.ng2-smart-action-custom-custom {
+  padding: .2em .3em;
+}
+
+.ng2-smart-action.ng2-smart-action-custom-custom {
+
+  i {
+    font-size: 1.5rem !important;
+  }
+
+  &:hover {
+    i {
+      font-size: 1.75rem !important;
+    }
+
+    i.eva-eye-outline, i.eva-edit-outline, i.eva-copy-outline, i.eva-checkmark-circle-2-outline {
+      color: nb-theme(color-info-500) !important;
+    }
+
+    i.eva-trash-2-outline {
+      color: nb-theme(color-danger-500) !important;
+    }
+  }
+}
+
+
+//for smarttable selected element
+.item-selected {
+  background-color: nb-theme(color-success-100) !important;
+  &.selected {
+    background: nb-theme(color-success-200) !important;
+
+    > td {
+      color: white
+    }
+  }
+}

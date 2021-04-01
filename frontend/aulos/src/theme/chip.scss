@@ -1,0 +1,52 @@
+
+@import "../themes";
+
+.chip {
+  display: inline-block;
+  font-size: .8rem;
+  border-radius: .33rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: nb-theme(text-control-color);
+
+  $left-color: nb-theme(button-hero-primary-left-background-color);
+  $right-color: nb-theme(button-hero-primary-right-background-color);
+  background-image: linear-gradient(to right, $left-color, $right-color);
+
+  padding: .25rem .75rem;
+
+  
+  &.fullWidth {
+    display: block;
+  }
+
+  &.chip-tiny {
+    padding: .10rem .50rem;
+    font-size: .7rem;
+    border-radius: .66rem;
+  }
+
+  &.large {
+    padding: .5rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 1.25rem;
+  }
+
+  $colors: 'basic', 'primary', 'danger', 'warning', 'success', 'info';
+  @each $col in $colors {
+    &.#{$col} {
+      $left-color: nb-theme(button-hero-#{$col}-left-background-color);
+      $right-color: nb-theme(button-hero-#{$col}-right-background-color);
+      background-image: linear-gradient(to right, $left-color, $right-color);
+
+      @if ($col == 'basic') {
+        color: #444;
+      }
+    }
+  }
+
+  nb-icon {
+    margin-right: .5rem;
+    vertical-align: middle;
+  }
+}

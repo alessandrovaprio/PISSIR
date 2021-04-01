@@ -1,0 +1,34 @@
+<nb-layout>
+  <nb-layout-header>
+    <div class="header-container">
+      <span class="title"></span>
+    </div>
+
+    <div class="header-container">
+      <div>
+        <button nbButton (click)="onLogout()">Logout <nb-icon status="danger" icon="log-out-outline"></nb-icon></button>
+      </div>
+      <!-- <app-user-component></app-user-component> -->
+    </div>
+  </nb-layout-header>
+
+  <nb-sidebar tag="left" responsive>
+    <div class="menu-header">
+      <img src="../../../assets/imgs/aulos_logo.jpg" alt="">
+    </div>
+    <hr>
+    <!-- <form class="menu-search" [formGroup]="searchForm" (submit)="onSearch()">
+      <input type="text" nbInput fullWidth placeholder="Search..." formControlName="term">
+    </form> -->
+    <div class="menu-container">
+      <nb-menu tag="sidebar-menu" [items]="menuItems"></nb-menu>
+    </div>
+    <div class="menu-footer">
+      <!-- <button nbButton ghost size="tiny" routerLink="/mnt/version">v{{uiSvc.version}}</button> -->
+    </div>
+  </nb-sidebar>
+
+  <nb-layout-column id="main-content">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

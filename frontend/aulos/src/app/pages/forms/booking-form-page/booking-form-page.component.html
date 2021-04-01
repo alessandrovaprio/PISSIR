@@ -1,0 +1,17 @@
+<ng-container >
+  <nb-layout-header>
+    <div class="header-container">
+      <button nbButton ghost class="mr-4" status="basic" (click)="onGoBack(router, universalApi.entity)">
+        <nb-icon icon="arrowhead-left-outline"></nb-icon>
+      </button>
+      <span class="title">Prenotazione</span>
+    </div>
+
+    <div class="header-container">
+      <!-- <app-user-menu></app-user-menu> -->
+    </div>
+  </nb-layout-header>
+</ng-container>
+<app-event-form-page [options] = "options"
+
+>

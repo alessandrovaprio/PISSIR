@@ -1,0 +1,114 @@
+<nb-layout>
+  <nb-layout-header>
+    <div class="header-container">
+      <button nbButton ghost class="mr-4" status="basic" (click)="onGoBack(router, 'Aula')">
+        <nb-icon icon="arrowhead-left-outline"></nb-icon>
+      </button>
+      <span class="title">Aula</span>
+    </div>
+
+    <div class="header-container">
+      <!-- <app-user-menu></app-user-menu> -->
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-column [class.standard-page-size]="">
+    <nb-card>
+      <nb-card-body>
+        <form [formGroup]="form">
+          <div class="row ">
+            <div class="col-8">
+              <div class="form-group">
+                <label for="nomeAula" class="label">
+                  Nome Aula
+                </label>
+              </div>
+              <input type="text" maxlength="35" nbInput fullWidth formControlName="nomeAula" placeholder="Nome Aula" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="capienzaMin" class="label">
+                  Capienza Min
+                </label>
+              </div>
+              <input type="number" nbInput fullWidth formControlName="capienzaMin" placeholder="Capienza Min" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="capienzaMax" class="label">
+                  Capienza Max
+                </label>
+              </div>
+              <input type="number" nbInput fullWidth formControlName="capienzaMax" placeholder="Capienza Max" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+          </div>
+
+        </form>
+        <ng-container *ngIf="availableDevices.length == 0">
+          <h4 class="text-center m-3"> Nessun Dispositivo Trovato</h4>
+        </ng-container>
+        <ng-container *ngIf="availableDevices.length > 0">
+          <div class="row mt-4" >
+            <div class="col-12 ">
+              <h6>Associazione Dispositivi</h6>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <label class="label">Dispositivi Disponibili</label>
+              </div>
+              <nb-card size="medium" [nbSpinner]="loading" nbSpinnerStatus="info">
+                <nb-list>
+                  <nb-list-item *ngFor="let i of availableDevices">
+                    <b>{{i.nomeDispositivo}}</b>
+                    <small>{{i.aulaDispositivo ? ' ( Assegnato: '+ i.aulaDispositivo.nomeAula + ' )' : ''}}</small>
+                    <button nbButton size="medium" class="ml-auto" hero shape="round" (click)="onAddAssign(i)" [disabled]="!isAssignable(i) || form.disabled">
+                      <nb-icon icon="plus"></nb-icon>
+                    </button>
+                  </nb-list-item>
+                </nb-list>
+              </nb-card>
+            </div>
+
+            <div class="col-6">
+              <div class="form-group">
+                <span class="required">*</span>
+                <label class="label">Dispotivi Associati</label>
+              </div>
+
+              <nb-card size="medium" [nbSpinner]="loading" nbSpinnerStatus="info">
+                <ng-container *ngIf="assigneDevices.length > 0">
+                  <nb-list>
+                    <nb-list-item *ngFor="let i of assigneDevices">
+                      <ng-container >
+                        <b >{{i.nomeDispositivo}}</b>
+                        <button [disabled]="form.disabled" nbButton size="medium" class="ml-auto" hero shape="round" status="danger" (click)="onRemoveAssign(i)" >
+                          <nb-icon icon="trash-2"></nb-icon>
+                        </button>
+                      </ng-container >
+                    </nb-list-item>
+                  </nb-list>
+
+                </ng-container>
+
+              </nb-card>
+            </div>
+          </div>
+        </ng-container>
+        <hr>
+          <div class="row" >
+            <div class="col-12 mb-3 text-right">
+              <button type="submit" nbButton status="success" [disabled]="!form.valid || (!form.dirty)"
+                (click)="onSave()">Salva</button>
+            </div>
+          </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
+

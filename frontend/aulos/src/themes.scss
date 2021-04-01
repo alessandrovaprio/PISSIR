@@ -1,0 +1,132 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import '~@nebular/theme/styles/themes/dark';
+
+$nb-enable-css-custom-properties: true;
+
+
+// $nb-themes: nb-register-theme((
+//   // add your variables here like:
+
+//   // color-primary-100: #f2f6ff,
+//   // color-primary-200: #d9e4ff,
+//   // color-primary-300: #a6c1ff,
+//   // color-primary-400: #598bff,
+//   // color-primary-500: #3366ff,
+//   // color-primary-600: #274bdb,
+//   // color-primary-700: #1a34b8,
+//   // color-primary-800: #102694,
+//   // color-primary-900: #091c7a,
+
+// ), default, default);
+
+
+$nb-themes: nb-register-theme((
+  color-primary-100: #C8E6FA,
+  color-primary-200: #94CAF5,
+  color-primary-300: #5BA0E1,
+  color-primary-400: #3277C3,
+  color-primary-500: #02449B,
+  color-primary-600: #013485,
+  color-primary-700: #01276F,
+  color-primary-800: #001B59,
+  color-primary-900: #00134A,
+  color-primary-transparent-100: rgba(2, 68, 155, 0.08),
+  color-primary-transparent-200: rgba(2, 68, 155, 0.16),
+  color-primary-transparent-300: rgba(2, 68, 155, 0.24),
+  color-primary-transparent-400: rgba(2, 68, 155, 0.32),
+  color-primary-transparent-500: rgba(2, 68, 155, 0.4),
+  color-primary-transparent-600: rgba(2, 68, 155, 0.48),
+  color-success-100: #C7F9D8,
+  color-success-200: #91F3BC,
+  color-success-300: #57DB9D,
+  color-success-400: #2EB885,
+  color-success-500: #008A64,
+  color-success-600: #007661,
+  color-success-700: #00635B,
+  color-success-800: #004E50,
+  color-success-900: #003A42,
+  color-success-transparent-100: rgba(0, 138, 100, 0.08),
+  color-success-transparent-200: rgba(0, 138, 100, 0.16),
+  color-success-transparent-300: rgba(0, 138, 100, 0.24),
+  color-success-transparent-400: rgba(0, 138, 100, 0.32),
+  color-success-transparent-500: rgba(0, 138, 100, 0.4),
+  color-success-transparent-600: rgba(0, 138, 100, 0.48),
+  color-info-100: #CAF7FC,
+  color-info-200: #95EAFA,
+  color-info-300: #60D0F0,
+  color-info-400: #38B1E1,
+  color-info-500: #0086CD,
+  color-info-600: #0068B0,
+  color-info-700: #004D93,
+  color-info-800: #003776,
+  color-info-900: #002762,
+  color-info-transparent-100: rgba(0, 134, 205, 0.08),
+  color-info-transparent-200: rgba(0, 134, 205, 0.16),
+  color-info-transparent-300: rgba(0, 134, 205, 0.24),
+  color-info-transparent-400: rgba(0, 134, 205, 0.32),
+  color-info-transparent-500: rgba(0, 134, 205, 0.4),
+  color-info-transparent-600: rgba(0, 134, 205, 0.48),
+  color-warning-100: #FFF1CC,
+  color-warning-200: #FFDE99,
+  color-warning-300: #FFC766,
+  color-warning-400: #FFB13F,
+  color-warning-500: #FF8C00,
+  color-warning-600: #DB6E00,
+  color-warning-700: #B75400,
+  color-warning-800: #933D00,
+  color-warning-900: #7A2C00,
+  color-warning-transparent-100: rgba(255, 140, 0, 0.08),
+  color-warning-transparent-200: rgba(255, 140, 0, 0.16),
+  color-warning-transparent-300: rgba(255, 140, 0, 0.24),
+  color-warning-transparent-400: rgba(255, 140, 0, 0.32),
+  color-warning-transparent-500: rgba(255, 140, 0, 0.4),
+  color-warning-transparent-600: rgba(255, 140, 0, 0.48),
+  color-danger-100: #F9D1CB,
+  color-danger-200: #F49C9A,
+  color-danger-300: #DE636C,
+  color-danger-400: #BD3A50,
+  color-danger-500: #910C2F,
+  color-danger-600: #7C0832,
+  color-danger-700: #680632,
+  color-danger-800: #540330,
+  color-danger-900: #45022E,
+  color-danger-transparent-100: rgba(145, 12, 47, 0.08),
+  color-danger-transparent-200: rgba(145, 12, 47, 0.16),
+  color-danger-transparent-300: rgba(145, 12, 47, 0.24),
+  color-danger-transparent-400: rgba(145, 12, 47, 0.32),
+  color-danger-transparent-500: rgba(145, 12, 47, 0.4),
+  color-danger-transparent-600: rgba(145, 12, 47, 0.48)
+
+), default, default);
+
+.text-danger-color {
+  color: nb-theme(color-danger-500) !important;
+}
+
+.bg-danger-color {
+  background: nb-theme(color-danger-500) !important;
+  color: #FEE !important;
+}
+
+.text-success-color {
+  color: nb-theme(color-success-500) !important;
+}
+
+.bg-success-color {
+  background: nb-theme(color-success-500) !important;
+  color: #121 !important;
+}
+
+$colors: 'basic', 'primary', 'danger', 'warning', 'success', 'info';
+
+
+
+@each $col in $colors {
+  .text-#{$col} {
+    $color: nb-theme(color-#{$col}-500);
+    color: $color !important;
+  }
+}
+
+

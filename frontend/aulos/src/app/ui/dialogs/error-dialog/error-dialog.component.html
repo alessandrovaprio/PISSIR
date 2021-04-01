@@ -1,0 +1,30 @@
+<nb-card *ngIf="error">
+  <nb-card-header class="text-danger">
+    <ng-container *ngIf="error.code">
+      [{{error.code}}] {{error.title}}
+    </ng-container>
+    <ng-container *ngIf="!error.code">
+      {{error.title}}
+    </ng-container>
+  </nb-card-header>
+
+  <nb-card-body class="p-4">
+    <ng-container *ngIf="error.details">
+      <h6 *ngIf="title" padding-horizontal>
+        {{title}}
+      </h6>
+      <ul>
+        <li *ngFor="let msg of errorMessages" [innerHTML]="msg"></li>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="!error.details">
+      <p padding>
+        {{error.message}}
+      </p>
+    </ng-container >
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="danger" hero (click)="onCallback(true)" class="ml-auto">Chiudi</button>
+  </nb-card-footer>
+</nb-card>

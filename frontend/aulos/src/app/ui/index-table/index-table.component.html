@@ -1,0 +1,125 @@
+<!-- <nb-layout>
+  <nb-layout-column [class.standard-page-size]=""> -->
+
+    <!-- filters for Event index page -->
+    <ng-container *ngIf="config.visible">
+      <ng-container *ngIf="modelDefinition === 'Evento' && useCustomFilter">
+        <div class="row">
+           <div class="col-3 m-3">
+             <nb-toggle labelPosition="start"
+                [(ngModel)]="onGoing"
+                (ngModelChange)="onStatusToggle($event, 'In Corso')"
+                [disabled]="closed || booked"
+             >
+               Eventi Attivi
+              </nb-toggle>
+           </div>
+           <div class="col-3 m-3">
+            <nb-toggle labelPosition="start"
+              [(ngModel)]="closed"
+              (ngModelChange)="onStatusToggle($event, 'Concluso')"
+              [disabled]="onGoing || booked"
+            >
+              Eventi Conclusi
+            </nb-toggle>
+          </div>
+           <div class="col-3 m-3">
+            <nb-toggle labelPosition="start"
+              [(ngModel)]="booked"
+              (ngModelChange)="onStatusToggle($event, 'Pianificato')"
+              [disabled]="onGoing || closed"
+            >
+              Eventi Pianificati
+            </nb-toggle>
+          </div>
+        </div>
+      </ng-container>
+      <ngx-table
+        [configuration]="config.config"
+        [data]="data"
+        [columns]="config.columns"
+        (event)="onTableEvent($event)"
+        >
+        <ng-template let-row let-index="index">
+          <td *ngFor="let col of config.columns" [class]="col.type"
+            [class.critical]="col.key ==='statoPresenti' && row['statoPresenti'] && row['statoPresenti'] === 'Critico'"
+            [class.wascritical]="col.key ==='statoPresenti' && row['statoPresenti'] && row['statoPresenti'] === 'Picco Critico'"
+            [class.warnign]="col.key ==='statoPresenti' && row['statoPresenti'] && row['statoPresenti'] === 'Prudenza'"
+            [class.ok]="col.key ==='statoPresenti' && row['statoPresenti'] && row['statoPresenti'] === 'Ok'"
+            [class.selectable-row]="selectable" [class.disabled-row]="row.dtDeleted"
+            [class.current]="currentSelectionId && row[universalApi.entityKey] === currentSelectionId"
+          >
+            <ng-container [ngSwitch]="col.type">
+
+              <!-- actions -->
+              <div class="text-right" *ngSwitchCase="'actions'">
+                <nb-button-group ghost size="small">
+                  <button nbButton [hidden]="!config.canView" (click)="onAction('detail', row)">
+                    <nb-icon status="primary" icon="eye-outline"></nb-icon>
+                  </button>
+
+                  <button
+                    nbButton
+                    [hidden]="!config.canCreate || (row['statoAula'] && row['statoAula']!=='Libera')"
+                    (click)="onAction('create', row)">
+                    <nb-icon status="primary" icon="plus-outline"></nb-icon>
+                  </button>
+                  <!-- {{printData(row, config.canEdit, config.canCreate)}} -->
+                  <button
+                    nbButton
+                    [hidden]="!config.canEdit || (row['statoAula'] && row['statoAula']==='Libera')"
+                    (click)="onAction('edit', row)">
+                      <!-- <nb-icon status="primary" icon="eye-outline"></nb-icon> -->
+                      <nb-icon status="primary" icon="edit-outline"></nb-icon>
+                  </button>
+
+                  <button
+                    nbButton
+                    [hidden]="!config.canClone || (row.dtDeleted !== undefined && row.dtDeleted !== null)"
+                    (click)="onAction('clone', row)">
+                    <nb-icon status="primary" icon="copy-outline"></nb-icon>
+                  </button>
+                  <button
+                    nbButton
+                    [hidden]="!config.canDelete || ((row['statoAula'] && row['statoAula']==='Libera')) || ((row['statoEvento'] && ['Concluso', 'In Corso'].includes(row['statoEvento'])))"
+                    (click)="onAction('delete', row)">
+                    <nb-icon status="danger" icon="trash-2-outline"></nb-icon>
+
+
+                  </button>
+                </nb-button-group>
+              </div>
+
+              <!-- relation -->
+              <ng-container *ngSwitchCase="'relation'">
+                <ng-container *ngIf="col.resolvers">
+                  <ng-container *ngFor="let prop of col.resolvers">
+                    {{ row[col.key] ? row[col.key][prop] : null }}
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngIf="!col.resolvers">
+                  {{ row[col.key].length }}&times;
+                </ng-container>
+              </ng-container>
+
+              <!-- bool -->
+              <ng-container *ngSwitchCase="'boolean'">
+                {{ row[col.key] ? 'Sì' : 'No' }}
+              </ng-container>
+
+              <!-- date -->
+              <ng-container *ngSwitchCase="'date'">
+                {{ row[col.key] | date:'short' }}
+              </ng-container>
+
+              <!-- default -->
+              <ng-container *ngSwitchDefault>
+                  {{ row[col.key] }}
+              </ng-container>
+            </ng-container>
+          </td>
+        </ng-template>
+      </ngx-table>
+    </ng-container>
+  <!-- </nb-layout-column>
+</nb-layout> -->

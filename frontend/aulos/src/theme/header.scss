@@ -1,0 +1,72 @@
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '../themes';
+
+nb-layout-header{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  nb-action {
+    height: auto;
+    display: flex;
+    align-content: center;
+  }
+
+  nb-user {
+    cursor: pointer;
+  }
+
+  ::ng-deep nb-search button {
+    padding: 0!important;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    margin: auto;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .title {
+      // padding: 0 1.25rem;
+      padding-right: 1rem;
+      font-size: 1.35rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .control-item {
+      display: none;
+    }
+    .user-action {
+      border: none;
+      padding: 0;
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    nb-select {
+      display: none;
+    }
+  }
+}
+
+nb-user {
+  .user-picture {
+    background: nb-theme(color-primary-500);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+}

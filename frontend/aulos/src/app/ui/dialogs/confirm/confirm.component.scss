@@ -1,0 +1,13 @@
+nb-card-body {
+  min-width: 350px !important;
+  max-width: 500px !important;
+  // min-height: 150px !important;
+  // height: 300px !important;
+  // max-height: 300px !important;
+  overflow-y: scroll;
+}
+
+nb-card-footer {
+  display: flex;
+  justify-content: space-between;
+}

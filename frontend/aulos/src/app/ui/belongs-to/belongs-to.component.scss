@@ -1,0 +1,30 @@
+
+.form-group {
+  margin-top: -4px;
+
+  .buttons {
+    display: flex;
+
+    button {
+      flex: 1;
+
+      &.delete {
+        flex: 0 0 44px;
+      }
+    }
+  }
+}
+span {
+  color: whitesmoke !important;
+}
+.dotted-bord{
+  border-style:dashed !important;
+  border-width:1px !important;
+  border-color: darkgrey !important;
+}
+.light-grey {
+  color: lightslategrey;
+}
+
+
+

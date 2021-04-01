@@ -1,0 +1,118 @@
+<nb-layout>
+  <nb-layout-column >
+
+    <nb-card>
+      <nb-card-header class="filters" >
+        <form [formGroup]="form">
+
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="startDate" class="label">Inizio Range</label>
+                <input nbInput withSeconds fullWidth formControlName="startDate" (ngModelChange)="onStartChange($event)" [nbDatepicker]="startDatePicker"  readonly [status]="getInputStatus('dtStartDate')">
+                <nb-date-timepicker #startDatePicker [min]="minStartDate" [max]="maxStartDate"></nb-date-timepicker>
+                <small [hidden]="rangeOk" status="danger"> {{'Controllare range. ' + (checkDatenow('startDate') ? '' : 'Inferiore a data corrente')}} </small>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label for="endDate" class="label">Fine Range</label>
+                <input nbInput withSeconds fullWidth formControlName="endDate" (ngModelChange)="onEndChange($event)" [nbDatepicker]="endDatePicker"  readonly [status]="getInputStatus('dtEndDate')">
+                <nb-date-timepicker #endDatePicker [min]="minEndDate"></nb-date-timepicker>
+                <small [hidden]="rangeOk" status="danger">{{'Controllare range. ' + (checkDatenow('endDate') ? '' : 'Inferiore a data corrente')}}</small>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-group">
+                <label for="minCapacity" class="label">Num. Partecipanti</label>
+                <input nbInput type="number" fullWidth formControlName="minCapacity">
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-group">
+                <label for="percRiemp" class="label">Grado Riemp.</label>
+                <input nbInput type="number" fullWidth formControlName="percRiemp" (ngModelChange)="maxNumber('percRiemp', 100)" >
+                <span class="blue-text">valore in %</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+
+              <nb-toggle labelPosition="start"
+                formControlName="freeFilter"
+                (ngModelChange)="onStatusToggle($event, 'Libera')"
+                [disabled]="form.value.busyFilter"
+              >
+                Libere
+              </nb-toggle>
+            </div>
+            <div class="col-5">
+              <nb-toggle labelPosition="start"
+                formControlName="busyFilter"
+                (ngModelChange)="onStatusToggle($event, 'Occupata')"
+                [disabled]="form.value.freeFilter"
+              >
+                Occupate
+              </nb-toggle>
+
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-6 m-3 justify-content-center">
+              <button nbButton fullWidth status="primary" [disabled]="(!form.value.startDate || !form.value.endDate) || !rangeOk" (click)="searchWithFilters()">
+                Applica filtri
+              </button>
+              <ng-container *ngIf="!form.value.startDate || !form.value.endDate">
+                <div class="text-center">
+                  <small status="danger" >Selezionare Inizio e Fine</small>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-6 m-3 justify-content-center">
+              <button fullWidth nbButton status="danger" (click)="clearFilters()">
+                Rimuovi filtri
+              </button>
+            </div>
+          </div>
+            <!-- <input size="small" nbInput fullWidth name="searchTerm" type="text" placeholder="'Cerca'" [(ngModel)]="this.searchTerm" />
+
+          <button class="search"  (click)="search()" nbButton hero status="primary">
+            <nb-icon icon="search-outline"></nb-icon>
+          </button> -->
+          <!-- <button class="toggle-deleted" (click)="onToggleDeleted()" nbButton hero [status]="showDeleted ? 'warning' : 'primary'" [nbTooltip]="showDeleted ? uiSvc.translate('Search', 'hideDeleted') : uiSvc.translate('Search', 'showDeleted')">
+            <nb-icon [icon]="showDeleted ? 'eye-off-outline' : 'eye-outline'"></nb-icon>
+          </button> -->
+          <!-- <app-pager [api]="universalApi" class="ml-auto mr-3"></app-pager> -->
+
+          <!-- <button [nbTooltip]="'crea nuovo evento'" class="create ml-auto mr-3" (click)="onCreate()" nbButton hero status="primary">
+            {{'crea nuovo evento'}}
+            <nb-icon icon="plus"></nb-icon>
+          </button> -->
+        </form>
+      </nb-card-header>
+
+      <ng-container *ngIf="!loading">
+        <nb-card-body class="p-0" *ngIf="data !== null && data !== undefined && data.length >0">
+          <app-index-table
+            [data] = "data"
+            [modelDefinition]="universalApi.entity"
+            [universalApi]="universalApi"
+            [fieldsOrder]="getFields()"
+            [canCreate]="true"
+            [useLocalStorage] = "true"
+          >
+          </app-index-table>
+        </nb-card-body>
+        <ng-container *ngIf="(data == null || data.length === 0) && this.form.value.startDate">
+          <h3 class="text-center">Nessun Dato Trovato</h3>
+        </ng-container>
+
+      </ng-container>
+
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

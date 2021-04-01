@@ -1,0 +1,42 @@
+<nb-layout>
+  <nb-layout-header>
+    <div class="header-container">
+      <button nbButton ghost class="mr-4" status="basic" (click)="onGoBack(router, universalApi.entity)">
+        <nb-icon icon="arrowhead-left-outline"></nb-icon>
+      </button>
+      <span class="title">Attrezzatura</span>
+    </div>
+
+    <div class="header-container">
+      <!-- <app-user-menu></app-user-menu> -->
+    </div>
+  </nb-layout-header>
+
+  <nb-layout-column [class.standard-page-size]="">
+    <nb-card>
+      <nb-card-body>
+        <form [formGroup]="form">
+          <div class="row justify-content-center">
+            <div class="col-8">
+              <div class="form-group">
+                <label for="nomeAttrezzatura" class="label">
+                  Nome Attrezzatura
+                </label>
+              </div>
+              <input type="text" maxlength="35" nbInput fullWidth formControlName="nomeAttrezzatura" placeholder="Nome Attrezzatura" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+          </div>
+          <div class="row" >
+            <div class="col-12 text-right">
+              <button type="submit" nbButton status="success" [disabled]="!form.valid || (!form.dirty)"
+                (click)="onSave()">Salva</button>
+            </div>
+          </div>
+        </form>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
+

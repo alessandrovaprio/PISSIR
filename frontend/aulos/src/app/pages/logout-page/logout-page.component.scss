@@ -1,0 +1,16 @@
+
+nb-layout-column {
+  display: flex;
+  flex-direction: column;
+
+  nb-card {
+    margin: auto;
+    min-width: 320px;
+
+    nb-card-body {
+      p {
+        text-align: center;
+      }
+    }
+  }
+}

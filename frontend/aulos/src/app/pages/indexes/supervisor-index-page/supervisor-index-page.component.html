@@ -1,0 +1,34 @@
+<nb-layout>
+  <nb-layout-column >
+    <nb-card>
+      <nb-card-header class="filters" >
+        <!-- <form (submit)="search()" class="free-search">
+          <input size="small" nbInput fullWidth name="searchTerm" type="text" placeholder="'Cerca'" [(ngModel)]="this.searchTerm" />
+        </form>
+        <button class="search"  (click)="search()" nbButton hero status="primary">
+          <nb-icon icon="search-outline"></nb-icon>
+        </button> -->
+        <!-- <button class="toggle-deleted" (click)="onToggleDeleted()" nbButton hero [status]="showDeleted ? 'warning' : 'primary'" [nbTooltip]="showDeleted ? uiSvc.translate('Search', 'hideDeleted') : uiSvc.translate('Search', 'showDeleted')">
+          <nb-icon [icon]="showDeleted ? 'eye-off-outline' : 'eye-outline'"></nb-icon>
+        </button> -->
+        <!-- <app-pager [api]="universalApi" class="ml-auto mr-3"></app-pager> -->
+
+        <button [nbTooltip]="'crea nuovo evento'" class="create ml-auto mr-3" (click)="onCreate()" nbButton hero status="primary">
+          {{'crea nuovo Responsabile'}}
+          <nb-icon icon="plus"></nb-icon>
+          <!-- {{uiSvc.translate(this.universalApi.entity, '_single')}} -->
+        </button>
+      </nb-card-header>
+
+      <nb-card-body class="p-0" *ngIf="data !== null && data !== undefined && data.length >0">
+        <app-index-table
+          [data] = "data"
+          [modelDefinition]="modelDefinition"
+          [universalApi]="universalApi"
+      >
+
+        </app-index-table>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

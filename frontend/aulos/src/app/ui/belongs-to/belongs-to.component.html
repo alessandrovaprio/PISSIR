@@ -1,0 +1,48 @@
+<div class="form-group" [class.mb-0]="!useLabel">
+  <label for="szLogoName" class="label" *ngIf="useLabel === true">
+    <span class="required" *ngIf="required">*</span>
+   {{this.relation}}
+  </label>
+
+  <ng-container *ngIf="readonly">
+    <p class="readonly-value">
+      <ng-container *ngIf="!relationData">
+        -
+      </ng-container>
+      <ng-container *ngIf="relationData">
+        <span >
+          {{descrFieldString}}
+        </span>
+      </ng-container>
+    </p>
+  </ng-container>
+
+  <ng-container *ngIf="!readonly">
+    <div class="buttons"  *ngIf="mode === 'default'">
+      <button nbButton [status]="buttonColor" class="mr-2" (click)="onSelectRelation()" [nbSpinner]="loading" nbSpinnerStatus="info" [disabled]="disabled">
+        <ng-container *ngIf="!relationData">
+          <nb-icon icon="search-outline"></nb-icon>
+          SELEZIONA
+        </ng-container>
+        <ng-container *ngIf="relationData">
+          <nb-icon icon="edit-outline" *ngIf="!readonly"></nb-icon>
+          <span [class.deleted-row]="relationData.dtDeleted">
+            {{maxDescriptionLength ? getStringAbbreviated(descrFieldString) : descrFieldString}}
+          </span>
+        </ng-container>
+      </button>
+      <button class="delete" nbButton status="danger" *ngIf="!readonly" (click)="onClearRelation()" [disabled]="!value || disabled">
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
+    </div>
+
+    <!-- <nb-select [hidden]="mode !== 'select' || readonly" [disabled]="disabled" [class.dotted-bord]="disabled" fullWidth [(selected)]="value" (selectedChange)="onSelectChange($event)" [placeholder]="uiSvc.translate(this.entity, this.relation)">
+      <nb-option class="light-grey" [hidden]="!nullValueInOptions" [value]="null">{{uiSvc.translate('General','empty')}}</nb-option>
+      <nb-option [disabled]=checkDisable(i) [value]="i[customPrimaryKey || universalApi.modelPrimaryKey]" *ngFor="let i of availableItems">{{i[descrField]}}</nb-option>
+    </nb-select> -->
+
+    <input *ngIf="mode === 'select' && readonly && relationData" type="text" readonly nbInput fullWidth [value]="relationData[descrField]">
+
+    <small *ngIf="value && isNumericValue()">ID <b>{{value}}</b></small>
+  </ng-container>
+</div>

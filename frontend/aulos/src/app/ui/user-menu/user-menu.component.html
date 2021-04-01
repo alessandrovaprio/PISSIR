@@ -1,0 +1,21 @@
+<nb-actions *ngIf=""></nb-actions>
+
+<nb-actions >
+  <!-- <nb-action class="control-item" (click)="onToggleTheme()" [icon]="currentTheme === 'dark' ? 'bulb-outline' : 'bulb'"></nb-action> -->
+  <!-- <nb-action *ngIf="uiSvc.cloudPOSState !== 'disabled'">
+    <button nbButton [status]="uiSvc.cloudPOSStatusColor" size="small" (click)="uiSvc.onToggleCloudPOS()">
+      Cloud POS
+    </button>
+  </nb-action> -->
+  <nb-action class="control-item" icon="bell-outline">
+    <!-- <nb-badge text="7" status="danger" position="top right"></nb-badge> -->
+  </nb-action>
+  <nb-action class="user-action">
+    <!-- <nb-user
+      [nbContextMenu]="userMenu"
+      nbContextMenuTag="profile"
+      name="userName"
+      [title]="userTitle"
+    ></nb-user> -->
+  </nb-action>
+</nb-actions>

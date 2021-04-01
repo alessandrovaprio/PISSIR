@@ -1,0 +1,26 @@
+<nb-card>
+  <nb-card-body>
+    <app-index-table
+      #indexTable
+      [universalApi]="universalApi"
+      [currentSelection]="currentSelection"
+      [useModals]="true"
+      [selectable]="true"
+      (onSelect)="onSelect($event)"
+      [dialog]="true"
+    >
+    </app-index-table>
+  </nb-card-body>
+  <nb-card-footer footer>
+    <div class="row justify-content-center">
+      <div class="text-center">
+        <button nbButton status="danger" class="m-auto" (click)="onClose()">
+          Chiudi
+        </button>
+      </div>
+    </div>
+  </nb-card-footer>
+
+  </nb-card>
+  <!-- dialog footer -->
+

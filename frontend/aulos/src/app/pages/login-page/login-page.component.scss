@@ -1,0 +1,46 @@
+
+@import "../../../themes";
+
+nb-layout-column {
+  display: flex;
+  flex-direction: column;
+
+  nb-card {
+    margin: auto;
+    min-width: 320px;
+
+    nb-card-header {
+      padding: 1rem 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      $left-color: nb-theme(button-hero-primary-left-background-color);
+      $right-color: nb-theme(button-hero-primary-right-background-color);
+      background-image: linear-gradient(to right, $left-color, $right-color);
+
+      img {
+        margin: auto;
+        width: 75px;
+      }
+    }
+
+
+    nb-card-body {
+      form {
+
+        .form-group {
+          margin-bottom: 1rem;
+
+          label {
+            line-height: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+nb-layout-footer {
+  margin: auto;
+}

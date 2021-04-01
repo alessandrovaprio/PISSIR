@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-header>{{options.title}}</nb-card-header>
+
+  <nb-card-body class="p-4">
+    <p class="p-2">
+      {{options.message}}
+    </p>
+     <nb-card size="small" *ngIf="options.list">
+        <nb-list>
+          <nb-list-item *ngFor="let i of options.list">
+            {{ i.szDescription }}
+          </nb-list-item>
+        </nb-list>
+     </nb-card>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <button nbButton status="primary" ghost (click)="onCallback(false)">Annulla</button>
+    <button nbButton *ngIf="options.button" status="{{options.button.status}}" hero (click)="onCallback(true)" class="ml-auto">{{ options.button.text}}</button>
+    <button nbButton *ngIf="!options.button" status="danger" hero (click)="onCallback(true)" class="ml-auto">Conferma</button>
+  </nb-card-footer>
+</nb-card>

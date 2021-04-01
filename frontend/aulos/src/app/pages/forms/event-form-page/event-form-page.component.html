@@ -1,0 +1,152 @@
+<nb-layout>
+    <nb-layout-header>
+      <ng-container *ngIf="!embedded">
+
+        <div class="header-container">
+          <button nbButton ghost class="mr-4" status="basic" (click)="onGoBack(router, universalApi.entity)">
+            <nb-icon icon="arrowhead-left-outline"></nb-icon>
+          </button>
+          <span class="title">Evento</span>
+        </div>
+
+        <div class="header-container">
+          <!-- <app-user-menu></app-user-menu> -->
+        </div>
+      </ng-container>
+    </nb-layout-header>
+
+  <nb-layout-column [class.standard-page-size]="">
+    <nb-card>
+      <nb-card-header>
+        <div >
+          <input
+            class="text-center"
+            nbInput fullWidth readonly
+            [(ngModel)]="this.eventStatus"
+            status="getStatusInput(eventStatus)"
+            [class.finished]="eventStatus === 'Concluso'"
+            [class.inprogress]="eventStatus === 'In Corso'"
+            [class.booked]="eventStatus === 'Pianificato'"
+          >
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-5">
+              <div class="form-group">
+                <label for="nomeEvento" class="label">
+                  Nome Evento
+                </label>
+              </div>
+              <input type="text" maxlength="35" nbInput fullWidth formControlName="nomeEvento" placeholder="Nome" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+            <div class="col-5">
+              <div class="form-group">
+                <label for="tipoEvento" class="label">
+                  Tipo Evento
+                </label>
+              </div>
+              <input type="text" maxlength="35" nbInput fullWidth formControlName="tipoEvento" placeholder="Tipo" >
+              <!-- <small *ngIf="getInputTouched('attrezzatura_nome')" [innerHTML]="getInputError('attrezzatura_nome')"></small> -->
+            </div>
+            <!-- <div class="col-2">
+              <div class="form-group">
+                <label for="maxPartecipanti" class="label">
+                  Max Partecipanti
+                </label>
+              </div>
+              <input type="number" (ngModelChange)="onMaxPartecipantChange($event)" nbInput fullWidth formControlName="maxPartecipanti" placeholder="Numero Massimo Partecipanti" >
+            </div> -->
+          </div>
+          <div class="row mt-3">
+
+            <div class="col-6">
+              <div class="form-group">
+                <!-- <label for="szTriggerCodeType" class="label">{{uiSvc.translate(actionUniversalApi.entity, '_activator_type')}}</label> -->
+                <app-belongs-to
+                  entity="Evento"
+                  relation="Aula"
+                  descrField="nomeAula"
+                  formControlName="aulaEvento"
+                  [useLabel]="true"
+                  [required]="true"
+
+                ></app-belongs-to>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group ">
+                <!-- <label for="szTriggerCodeType" class="label">{{uiSvc.translate(actionUniversalApi.entity, '_activator_type')}}</label> -->
+                <app-belongs-to
+                  entity="Evento"
+                  relation="Responsabile"
+                  descrField="cognomeResp"
+                  formControlName="respEvento"
+                  [useLabel]="true"
+                  [required]="true"
+                ></app-belongs-to>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="dataOraInizio" class="label">Inizio</label>
+                <input nbInput fullWidth formControlName="dataOraInizio" [nbDatepicker]="startDatePicker"  (ngModelChange)="onStartChange($event, false)" readonly>
+                <nb-date-timepicker withSeconds #startDatePicker [min]="minStartDate"></nb-date-timepicker>
+                <span [hidden]="!startErr" class="errorMsg">{{startErr}}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="dataOraFine" class="label">Fine</label>
+                <input nbInput withSeconds fullWidth formControlName="dataOraFine" [nbDatepicker]="endDatePicker"  (ngModelChange)="onEndChange($event)" readonly>
+                <nb-date-timepicker #endDatePicker [max]="maxEndDate"></nb-date-timepicker>
+                <span [hidden]="!endErr" class="errorMsg">{{endErr}}</span>
+              </div>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="gradoRiempAula" class="label">Grado Riempimento</label>
+                <input type="text" (ngModelChange)="maxNumber('gradoRiempAula', 100)" nbInput fullWidth formControlName="gradoRiempAula">
+                <span class="blue-text">valore in %</span>
+              </div>
+            </div>
+            <ng-container *ngIf="inProgress">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="nPresenti" class="label">Presenti</label>
+                  <input  type="number" (ngModelChange)="onMaxPartecipantChange($event)" nbInput fullWidth formControlName="nPresenti">
+                </div>
+              </div>
+            </ng-container>
+
+            </div>
+          <div class="row" >
+            <!-- <ng-container *ngIf="isDialogMode">
+              <div class="col-6 mb-3 text-left" >
+                <button type="submit" nbButton status="danger"
+                  (click)="onClose()">Close</button>
+              </div>
+            </ng-container> -->
+            <ng-container *ngIf="eventStatus !== 'Concluso'">
+              <div class="col-12 mb-3 text-right">
+                <button type="submit" nbButton status="success" [disabled]="!form.valid || (!form.dirty)"
+                  (click)="onSave()">Salva</button>
+              </div>
+            </ng-container>
+          </div>
+        </form>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
+

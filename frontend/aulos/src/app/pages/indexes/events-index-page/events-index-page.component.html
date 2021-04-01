@@ -1,0 +1,30 @@
+<nb-layout>
+  <nb-layout-column >
+    <nb-card>
+      <nb-card-header class="filters">
+        <h3>Eventi</h3>
+        <!-- <form (submit)="search()" class="free-search">
+          <input size="small" nbInput fullWidth name="searchTerm" type="text" placeholder="'Cerca'" [(ngModel)]="this.searchTerm" [disabled]="this.loading"/>
+        </form>
+        <button class="search"  (click)="search()" nbButton hero status="primary">
+          <nb-icon icon="search-outline"></nb-icon>
+        </button> -->
+
+        <!-- <button [nbTooltip]="'crea nuovo evento'" class="create ml-auto mr-3" (click)="onCreate()" nbButton hero status="primary">
+          {{'crea nuovo evento'}}
+          <nb-icon icon="plus"></nb-icon>
+        </button> -->
+      </nb-card-header>
+
+      <nb-card-body class="p-0" *ngIf="data !== null && data !== undefined && data.length >0">
+        <app-index-table
+          [data] = "data"
+          [modelDefinition]="universalApi.entity"
+          [universalApi]="universalApi"
+          useCustomFilter="true"
+        >
+        </app-index-table>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
