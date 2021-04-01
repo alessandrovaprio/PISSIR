@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/aulos</property>
+        <property name="hibernate.connection.username">aulos</property>
+        <property name="hibernate.connection.password">password</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MariaDB53Dialect</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ManagedSessionContext</property>
+
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.timeout">300</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+
+        <mapping class="it.uniupo.giiot.backend.core.aula.Aula"/>
+        <mapping class="it.uniupo.giiot.backend.core.attrezzatura.Attrezzatura"/>
+        <mapping class="it.uniupo.giiot.backend.core.responsabile.Responsabile"/>
+        <mapping class="it.uniupo.giiot.backend.core.evento.Evento"/>
+        <mapping class="it.uniupo.giiot.backend.core.dispositivo.Dispositivo"/>
+
+    </session-factory>
+
+</hibernate-configuration>

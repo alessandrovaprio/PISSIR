@@ -1,0 +1,35 @@
+[33mcommit 91f07337a1def0ffdee4648dc89aca7b5f06d205[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:18:53 2020 +0100
+
+    Create le classi per l'entità aula e la sua gestione
+
+[33mcommit 4608c0b37ea199613fe763a4fa2c469b8c55e388[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:16:09 2020 +0100
+
+    Create le classi di test per l'entità aula e la sua gestione
+
+[33mcommit 3fccdd8c01243a0f0a7ff702b8a4a50364e77119[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:14:30 2020 +0100
+
+    Create le classi per l'entità attrezzatura e la sua gestione
+
+[33mcommit ba4ddd29dba0711050189786e62d0d3433aa6d07[m[33m ([m[1;32mback-end-dev[m[33m)[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:11:24 2020 +0100
+
+    Create le classi di test per l'entità attrezzatura e la sua gestione
+
+[33mcommit b1699932d0fd47ae5828c2103bf1a7c28e2a2df7[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:09:17 2020 +0100
+
+    Creati e configurati i file per il framework hibernate
+
+[33mcommit a76b347cb83c979724aaa57f41e2eb28a83f3aa0[m
+Author: Giovanni Galbani 20018136 <43996848+Giova1695@users.noreply.github.com>
+Date:   Thu Oct 29 16:06:07 2020 +0100
+
+    Inizio sviluppo back-end
